@@ -37,14 +37,17 @@ void detect_cirq_sectors(double complex * cirq_wfn,
                          const long long * cirq_aids,
                          const long long * cirq_bids,
                          const int * anumb,
-                         const int * bnumb) {
+                         const int * bnumb)
+{
   const int param_leading_dim = 2 * norb + 1;
 #pragma omp parallel for schedule(static)
-  for (int alpha_id = 0; alpha_id < alpha_states; ++alpha_id) {
+  for (int alpha_id = 0; alpha_id < alpha_states; ++alpha_id)
+{
     const long long cirq_aid = cirq_aids[alpha_id];
     const int alpha_num = anumb[alpha_id];
 
-    for (int beta_id = 0; beta_id < beta_states; ++beta_id) {
+    for (int beta_id = 0; beta_id < beta_states; ++beta_id)
+{
       const long long cirq_id = cirq_aid ^ cirq_bids[beta_id];
       if (cabs(cirq_wfn[cirq_id]) < thresh) { continue; }
 
